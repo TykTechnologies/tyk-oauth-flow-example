@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login Form (Your identity portal)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Login Form (Your identity portal)</h2>
+  <p>
+    The request has come from a third party, via the Tyk gateway, to try and access an OAuth resource. The Tyk gateway has identified the API it belongs to and has redirected the client to your login identity provider (you control this form).
+  <p>
+    <p>
+      Because the request that generated this page is a 307 POST redirect, the data from the originating POST should be retained, and you can see the variables below.
+    </p>
+    <ul>
+      <li>Client ID: {{.ClientID}}</li>
+      <li>Redirect URL: {{.RedirectURI}}</li>
+      <li>Response Type: {{.ResponseType}}</li>
+    </ul>
+  </p>
+  <p>
+    The above values are mirrored as hidden fields in the form below. Let's pretend to login to your server....
+  </p>
+  <form role="form" action="/approved" method="POST">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    </div>
+    <input type="hidden" class="form-control" id="response_type" name="response_type" value="{{.ResponseType}}">
+      <input type="hidden" class="form-control" id="client_id" name="client_id" value="{{.ClientID}}">
+      <input type="hidden" class="form-control" id="redirect_uri" name="redirect_uri" value="{{.RedirectURI}}">
+    <button type="submit" class="btn btn-default">Login</button>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Final</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Final callback</h2>
+  <p>
+    Your portal login has validated the identity, and made a call to the Tyk authorization endpoint, which has supplied a redirect URI, your portal provider can now redirect that user to the appropriate client-defined redirect URL.
+  </p>
+  <p>
+    The authentication token, and other data will be provided as a fragment in the URL, we've extracted the token below.
+  </p>
+  <p>
+    The request cycle is complete, and an access token has been generated: <span style="font-weight: bold" id="token"></span>
+  </p>
+  
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+    
+    var hash = window.location.hash;
+
+    var parts = hash.split("&")
+    var token_parts = parts[0].split("=")
+
+    $("#token").text(token_parts[1]);
+});
+  
+
+</script>
+</body>
+</html>

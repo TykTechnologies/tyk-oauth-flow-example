@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Third Party Requester (Client)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>1. Third Party Requester (Client)</h2>
+  <p>
+    The third party requester in this case is an app (mobile or SPWA), that is trying to get an access token. The requester kicks off the OAuth process by posting it's authorize request to the Tyk endpoint on your gateway.
+  </p>
+  <p>
+    Click the button below to start the process
+  </p>
+  <form role="form" method="POST" action="http://sharrow.tyk.io/oauth2/oauth/authorize/">
+      <input type="hidden" class="form-control" id="response_type" name="response_type" value="token">
+      <input type="hidden" class="form-control" id="client_id" name="client_id" value="16076d969bc745ec7018dd4343fac83b">
+      <input type="hidden" class="form-control" id="redirect_uri" name="redirect_uri" value="http://localhost:8000/final">
+    <button type="submit" class="btn btn-default">Start OAuth</button>
+  </form>
+</div>
+
+</body>
+</html>
