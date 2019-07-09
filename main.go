@@ -17,6 +17,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	tmplVal["ClientID"] = r.FormValue("client_id")
 	tmplVal["ResponseType"] = r.FormValue("response_type")
 	tmplVal["RedirectURI"] = r.FormValue("redirect_uri")
+	tmplVal["State"] = r.FormValue("state")
 
 	t, _ := template.ParseFiles("tmpl/login.html")
 	t.Execute(w, tmplVal)
@@ -26,9 +27,10 @@ func approvedHandler(w http.ResponseWriter, r *http.Request) {
 	var redirect_uri = r.FormValue("redirect_uri")
 	var responseType = r.FormValue("response_type")
 	var clientId = r.FormValue("client_id")
+	var State = r.FormValue("state")
 
 	thisResponse, rErr := RequestOAuthToken(APIlistenPath,
-		redirect_uri, responseType, clientId, "", orgID, policyID, BaseAPIID)
+		redirect_uri, responseType, clientId, "", orgID, policyID, BaseAPIID, State)
 
 	if rErr != nil {
 		log.Error(rErr)
