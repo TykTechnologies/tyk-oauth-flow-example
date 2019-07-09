@@ -156,7 +156,7 @@ func DispatchGateway(target Endpoint, method string, body io.Reader, ctype strin
 	return retBody, nil
 }
 
-func RequestOAuthToken(APIlistenPath, redirect_uri, responseType, clientId, secret, orgID, policyID, BaseAPIID string) (*OAuthResponse, error) {
+func RequestOAuthToken(APIlistenPath, redirect_uri, responseType, clientId, secret, orgID, policyID, BaseAPIID, state string) (*OAuthResponse, error) {
 	// Create a generic access token withour policy
 	basicSessionState := generateBasicTykSesion(BaseAPIID, "Default", policyID, orgID)
 	basicSessionState.OauthClientID = clientId
@@ -177,6 +177,7 @@ func RequestOAuthToken(APIlistenPath, redirect_uri, responseType, clientId, secr
 	data := "response_type=" + responseType
 	data += "&client_id=" + clientId
 	data += "&redirect_uri=" + redirect_uri
+	date += "&state=" + state
 	data += "&key_rules=" + url.QueryEscape(string(keyDataJSON))
 
 	log.Debug("Request data sent: ", data)
